@@ -69,6 +69,7 @@ class App extends Component {
         <Person
           name = { this.state.persons[1].name}
           age  = { this.state.persons[1].age}
+          click = { this.switchNameHandler }
         />
         <button
           onClick={ this.switchNameHandler }

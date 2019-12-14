@@ -1,11 +1,13 @@
 import React from 'react';
 
-const Persion = (props) => {
+const Person = (props) => {
   return (
     <div>
-      <p>I'm { props.name } and I'm { props.age } years old</p>
+      <p
+        onClick = { props.click }
+      >I'm { props.name } and I'm { props.age } years old</p>
     </div>
   )
 };
 
-export default Persion;
+export default Person;
