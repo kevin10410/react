@@ -59,6 +59,13 @@ class App extends Component {
   };
 
   render() {
+    const buttonStyleObj = {
+      cursor: 'pointer',
+      backgroundColor: 'white',
+      border: '1px solid blue',
+      outline: 'none',
+      padding: '5px 10px',
+    }
     return (
       <div className="App">
         <h1>React App</h1>
@@ -72,6 +79,7 @@ class App extends Component {
           click = { this.switchNameHandler }
         />
         <button
+          style={buttonStyleObj}
           onClick={ this.switchNameHandler }
         >Switch Name
         </button>
