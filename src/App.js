@@ -47,6 +47,7 @@ class App extends Component {
       { name: 'Kevin', age: 20 },
       { name: 'OTree', age: 18 },
     ],
+    showPersons: true,
   };
 
   switchNameHandler = () => {
@@ -56,6 +57,11 @@ class App extends Component {
         { name: 'Kevin', age: 20 },
       ],
     })
+  };
+
+  tooglePersonsTable = () => {
+    const { showPersons } = this.state;
+    this.setState({ showPersons: !showPersons });
   };
 
   render() {
@@ -69,20 +75,24 @@ class App extends Component {
     return (
       <div className="App">
         <h1>React App</h1>
-        <Person
-          name = { this.state.persons[0].name}
-          age  = { this.state.persons[0].age}
-        />
-        <Person
-          name = { this.state.persons[1].name}
-          age  = { this.state.persons[1].age}
-          click = { this.switchNameHandler }
-        />
         <button
           style={buttonStyleObj}
-          onClick={ this.switchNameHandler }
-        >Switch Name
+          onClick={ this.tooglePersonsTable }
+        >Toogle Persons Table
         </button>
+        { this.state.showPersons &&
+          <div className="personsTable">
+            <Person
+            name = { this.state.persons[0].name }
+            age  = { this.state.persons[0].age }
+            />
+            <Person
+              name = { this.state.persons[1].name }
+              age  = { this.state.persons[1].age }
+              click = { this.switchNameHandler }
+            />
+          </div>
+        }
       </div>
     )
   }
