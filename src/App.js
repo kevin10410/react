@@ -72,6 +72,22 @@ class App extends Component {
       outline: 'none',
       padding: '5px 10px',
     }
+
+    const personsTable = this.state.showPersons
+      ? (<div className="personsTable">
+          <Person
+          name = { this.state.persons[0].name }
+          age  = { this.state.persons[0].age }
+          />
+          <Person
+            name = { this.state.persons[1].name }
+            age  = { this.state.persons[1].age }
+            click = { this.switchNameHandler }
+          />
+        </div>
+        )
+      : null;
+
     return (
       <div className="App">
         <h1>React App</h1>
@@ -80,19 +96,7 @@ class App extends Component {
           onClick={ this.tooglePersonsTable }
         >Toogle Persons Table
         </button>
-        { this.state.showPersons &&
-          <div className="personsTable">
-            <Person
-            name = { this.state.persons[0].name }
-            age  = { this.state.persons[0].age }
-            />
-            <Person
-              name = { this.state.persons[1].name }
-              age  = { this.state.persons[1].age }
-              click = { this.switchNameHandler }
-            />
-          </div>
-        }
+        { personsTable }
       </div>
     )
   }
