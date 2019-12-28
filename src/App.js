@@ -75,15 +75,14 @@ class App extends Component {
 
     const personsTable = this.state.showPersons
       ? (<div className="personsTable">
-          <Person
-          name = { this.state.persons[0].name }
-          age  = { this.state.persons[0].age }
-          />
-          <Person
-            name = { this.state.persons[1].name }
-            age  = { this.state.persons[1].age }
-            click = { this.switchNameHandler }
-          />
+          { this.state.persons
+            .map((person, index) =>
+              <Person
+                name = { person.name }
+                age  = { person.age }
+                key = { index }
+              />)
+          }
         </div>
         )
       : null;
