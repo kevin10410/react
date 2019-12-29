@@ -64,6 +64,12 @@ class App extends Component {
     this.setState({ showPersons: !showPersons });
   };
 
+  deletePersonHandler = (index) => {
+    const { persons } = this.state;
+    persons.splice(index, 1);
+    this.setState({ persons });
+  };
+
   render() {
     const buttonStyleObj = {
       cursor: 'pointer',
@@ -81,6 +87,7 @@ class App extends Component {
                 name = { person.name }
                 age  = { person.age }
                 key = { index }
+                click = { () => this.deletePersonHandler(index)}
               />)
           }
         </div>
