@@ -79,10 +79,12 @@ class App extends Component {
   render() {
     const buttonStyleObj = {
       cursor: 'pointer',
-      backgroundColor: 'white',
       border: '1px solid blue',
       outline: 'none',
       padding: '5px 10px',
+      backgroundColor: this.state.showPersons
+        ? '#ffffff'
+        : '#85d285',
     }
 
     const personsTable = this.state.showPersons
