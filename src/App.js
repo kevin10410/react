@@ -70,6 +70,12 @@ class App extends Component {
     this.setState({ persons });
   };
 
+  nameChangeHandler = (value, index) => {
+    const { persons } = this.state;
+    persons[index].name = value;
+    this.setState({ persons });
+  };
+
   render() {
     const buttonStyleObj = {
       cursor: 'pointer',
@@ -88,6 +94,7 @@ class App extends Component {
                 age  = { person.age }
                 key = { index }
                 click = { () => this.deletePersonHandler(index)}
+                change = { (event) => this.nameChangeHandler(event.target.value, index)}
               />)
           }
         </div>
