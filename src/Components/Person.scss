@@ -5,12 +5,9 @@
   box-shadow: 0 2px 3px #ccc;
   padding: 16px;
   text-align: center;
-}
 
-.red {
-  color: red;
-}
-
-.bold {
-  font-weight: bold;
+  &__warning {
+    color: blue;
+    font-weight: bold;
+  }
 }

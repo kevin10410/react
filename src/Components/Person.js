@@ -1,11 +1,10 @@
 import React from 'react';
-import './Person.css';
+import './Person.scss';
 
 const Person = (props) => {
 
   const pClasses = ['Person'];
-  props.age > 18 && pClasses.push('red');
-  props.age > 18 && pClasses.push('bold');
+  props.age > 18 && pClasses.push('Person__warning');
 
   return (
     <div>
