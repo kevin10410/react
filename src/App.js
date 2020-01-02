@@ -3,7 +3,7 @@ import React, {
   Component,
 } from 'react';
 import Person from './Components/Person';
-import './App.css';
+import styled from 'styled-components';
 
 // function App () {
 //   const [ personsState, setPersonsState ] = useState({
@@ -77,15 +77,20 @@ class App extends Component {
   };
 
   render() {
-    const buttonStyleObj = {
-      cursor: 'pointer',
-      border: '1px solid blue',
-      outline: 'none',
-      padding: '5px 10px',
-      backgroundColor: this.state.showPersons
+    const DivApp = styled.div`
+      text-align: center;
+    `;
+
+    const ButtonToogleTable = styled.button`
+      cursor: pointer;
+      border: 1px solid blue;
+      outline: none;
+      padding: 5px 10px;
+      background-color: ${this.state.showPersons
         ? '#ffffff'
-        : '#85d285',
-    }
+        : '#85d285'
+      };
+    `;
 
     const personsTable = this.state.showPersons
       ? (<div className="personsTable">
@@ -104,15 +109,14 @@ class App extends Component {
       : null;
 
     return (
-      <div className="App">
+      <DivApp>
         <h1>React App</h1>
-        <button
-          style={buttonStyleObj}
+        <ButtonToogleTable
           onClick={ this.tooglePersonsTable }
-        >Toogle Persons Table
-        </button>
+        > Toogle Persons Table
+        </ButtonToogleTable>
         { personsTable }
-      </div>
+      </DivApp>
     )
   }
 }
