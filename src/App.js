@@ -5,6 +5,27 @@ import React, {
 import Person from './Components/Person';
 import styled from 'styled-components';
 
+const DivApp = styled.div`
+  text-align: center;
+`;
+
+const ButtonToogleTable = styled.button`
+  cursor: pointer;
+  border: 1px solid blue;
+  outline: none;
+  padding: 5px 10px;
+  background-color: ${ props => props.showPersons
+    ? '#ffffff' : '#85d285' };
+
+  &:hover {
+    background-color: #a1fba1;
+  }
+
+  &:active {
+    background-color: #85d285;
+  }
+`;
+
 // function App () {
 //   const [ personsState, setPersonsState ] = useState({
 //     persons: [
@@ -77,21 +98,6 @@ class App extends Component {
   };
 
   render() {
-    const DivApp = styled.div`
-      text-align: center;
-    `;
-
-    const ButtonToogleTable = styled.button`
-      cursor: pointer;
-      border: 1px solid blue;
-      outline: none;
-      padding: 5px 10px;
-      background-color: ${this.state.showPersons
-        ? '#ffffff'
-        : '#85d285'
-      };
-    `;
-
     const personsTable = this.state.showPersons
       ? (<div className="personsTable">
           { this.state.persons
@@ -112,6 +118,7 @@ class App extends Component {
       <DivApp>
         <h1>React App</h1>
         <ButtonToogleTable
+          showPersons={ this.state.showPersons }
           onClick={ this.tooglePersonsTable }
         > Toogle Persons Table
         </ButtonToogleTable>
