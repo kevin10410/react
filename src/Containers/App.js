@@ -2,7 +2,7 @@ import React, {
   // useState,
   Component,
 } from 'react';
-import Person from './Components/Person';
+import Person from '../Components/Persons/Person';
 import styled from 'styled-components';
 
 const DivApp = styled.div`
