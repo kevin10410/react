@@ -2,7 +2,7 @@ import React, {
   // useState,
   Component,
 } from 'react';
-import Person from '../Components/Persons/Person';
+import Persons from '../Components/Persons';
 import styled from 'styled-components';
 
 const DivApp = styled.div`
@@ -99,19 +99,11 @@ class App extends Component {
 
   render() {
     const personsTable = this.state.showPersons
-      ? (<div className="personsTable">
-          { this.state.persons
-            .map((person, index) =>
-              <Person
-                name = { person.name }
-                age  = { person.age }
-                key = { index }
-                click = { () => this.deletePersonHandler(index)}
-                change = { (event) => this.nameChangeHandler(event.target.value, index)}
-              />)
-          }
-        </div>
-        )
+      ? (<Persons
+          persons = { this.state.persons }
+          deletePersonHandler = { this.deletePersonHandler }
+          nameChangeHandler = { this.nameChangeHandler }
+        ></Persons>)
       : null;
 
     return (
