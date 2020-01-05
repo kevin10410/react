@@ -2,28 +2,13 @@ import React, {
   // useState,
   Component,
 } from 'react';
-import Persons from '../Components/Persons';
 import styled from 'styled-components';
+
+import Persons from '../Components/Persons';
+import Cockpit from '../Components/Cockpit';
 
 const DivApp = styled.div`
   text-align: center;
-`;
-
-const ButtonToogleTable = styled.button`
-  cursor: pointer;
-  border: 1px solid blue;
-  outline: none;
-  padding: 5px 10px;
-  background-color: ${ props => props.showPersons
-    ? '#ffffff' : '#85d285' };
-
-  &:hover {
-    background-color: #a1fba1;
-  }
-
-  &:active {
-    background-color: #85d285;
-  }
 `;
 
 // function App () {
@@ -108,12 +93,10 @@ class App extends Component {
 
     return (
       <DivApp>
-        <h1>React App</h1>
-        <ButtonToogleTable
-          showPersons={ this.state.showPersons }
-          onClick={ this.tooglePersonsTable }
-        > Toogle Persons Table
-        </ButtonToogleTable>
+        <Cockpit
+          showPersons = { this.state.showPersons }
+          tooglePersonsTable = { this.tooglePersonsTable }
+        ></Cockpit>
         { personsTable }
       </DivApp>
     )
