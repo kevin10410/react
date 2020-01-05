@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './Containers/App';
 import * as serviceWorker from './serviceWorker';
+import './mock/axios-mocker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
