@@ -48,12 +48,39 @@ const DivApp = styled.div`
 // }
 
 class App extends Component {
-  state = {
-    persons: [
-      { name: 'Kevin', age: 20 },
-      { name: 'OTree', age: 18 },
-    ],
-    showPersons: true,
+  constructor(props) {
+    super(props);
+    this.state = {
+      persons: [
+        { name: 'Kevin', age: 20 },
+        { name: 'OTree', age: 18 },
+      ],
+      showPersons: true,
+    };
+    console.log('App.js constructor');
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('App.js getDerivedStateFromProps', props);
+    return state;
+  };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('App.js shouldComponentUpdate');
+    console.log('App.js nextProps', nextProps);
+    console.log('App.js nextState', nextState);
+    return true;
+  };
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('App.js getSnapshotBeforeUpdate');
+    console.log('App.js prevProps', prevProps);
+    console.log('App.js prevState', prevState);
+    return null;
+  };
+
+  componentDidUpdate() {
+    console.log('App.js componentDidUpdate');
   };
 
   switchNameHandler = () => {
@@ -83,6 +110,7 @@ class App extends Component {
   };
 
   render() {
+    console.log('App.js render');
     const personsTable = this.state.showPersons
       ? (<Persons
           persons = { this.state.persons }

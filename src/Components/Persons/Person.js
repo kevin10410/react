@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 
@@ -13,28 +13,26 @@ const DivPerson = styled.div`
 
 const PPersonName = styled.p`
   color: ${ props => props.age > 18 ? 'red' : 'blue'};
-  fontWeight: ${ props => props.age > 18 ? 'bold' : 'normal'};
+  font-weight: ${ props => props.age > 18 ? 'bold' : 'normal'};
 `;
 
-const Person = (props) => {
-  const personNameStyleObj = {
-    color: `${props.age > 18 ? 'red' : 'blue'}`,
-    fontWeight: `${props.age > 18 ? 'bold' : 'normal'}`,
-  };
-
-  return (
-    <DivPerson>
+class Person extends Component {
+  render() {
+    console.log('Person rendering');
+    return (
+      <DivPerson>
       <PPersonName
-        style = {personNameStyleObj}
-        onClick = { props.click }
-      >I'm { props.name } and I'm { props.age } years old
+        age = { this.props.age }
+        onClick = { this.props.click }
+      >I'm { this.props.name } and I'm { this.props.age } years old
       </PPersonName>
       <input type="text"
-        value = { props.name }
-        onChange = { props.change }
+        value = { this.props.name }
+        onChange = { this.props.change }
       ></input>
     </DivPerson>
-  )
+    );
+  };
 };
 
 export default Person;
