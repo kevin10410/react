@@ -122,15 +122,14 @@ class App extends Component {
 
     return (
       <DivApp>
-        <WithClasses classes = {'app'}>
-          <Cockpit
-            showPersons = { this.state.showPersons }
-            tooglePersonsTable = { this.tooglePersonsTable }
-          ></Cockpit>
-          { personsTable }
-        </WithClasses>
+        <Cockpit
+          showPersons = { this.state.showPersons }
+          tooglePersonsTable = { this.tooglePersonsTable }
+        ></Cockpit>
+        { personsTable }
       </DivApp>
     )
   }
 }
-export default App;
+
+export default WithClasses(App, 'app');
