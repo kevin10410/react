@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 import Persons from '../Components/Persons';
 import Cockpit from '../Components/Cockpit';
+import WithClasses from '../HOC/WithClasses';
 
 const DivApp = styled.div`
   text-align: center;
@@ -121,11 +122,13 @@ class App extends Component {
 
     return (
       <DivApp>
-        <Cockpit
-          showPersons = { this.state.showPersons }
-          tooglePersonsTable = { this.tooglePersonsTable }
-        ></Cockpit>
-        { personsTable }
+        <WithClasses classes = {'app'}>
+          <Cockpit
+            showPersons = { this.state.showPersons }
+            tooglePersonsTable = { this.tooglePersonsTable }
+          ></Cockpit>
+          { personsTable }
+        </WithClasses>
       </DivApp>
     )
   }
