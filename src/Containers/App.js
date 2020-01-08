@@ -105,9 +105,11 @@ class App extends Component {
   };
 
   nameChangeHandler = (value, index) => {
-    const { persons } = this.state;
-    persons[index].name = value;
-    this.setState({ persons });
+    this.setState(( prevState ) => {
+      const { persons } = prevState;
+      persons[index].name = value;
+      return { persons };
+    });
   };
 
   render() {
