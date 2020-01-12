@@ -1,4 +1,4 @@
-import React from 'react';
+ import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
 const ButtonToogleTable = styled.button`
@@ -18,15 +18,24 @@ const ButtonToogleTable = styled.button`
   }
 `;
 
-const Cockpit = (props) => (
-  <div>
-    <h1>React App</h1>
-    <ButtonToogleTable
-      showPersons = { props.showPersons }
-      onClick = { props.tooglePersonsTable }
-    > Toogle Persons Table
-    </ButtonToogleTable>
-  </div>
-);
+const Cockpit = (props) => {
+  const toogleBtnRef = useRef(null);
+
+  useEffect(() => {
+    toogleBtnRef.current.click();
+  }, [])
+  
+  return (
+    <div>
+      <h1>React App</h1>
+      <ButtonToogleTable
+        ref = { toogleBtnRef }
+        showPersons = { props.showPersons }
+        onClick = { props.tooglePersonsTable }
+      > Toogle Persons Table
+      </ButtonToogleTable>
+    </div>
+  );
+};
 
 export default Cockpit;
