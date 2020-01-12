@@ -1,4 +1,4 @@
- import React, { useRef, useEffect } from 'react';
+ import React, { useRef, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import AuthContext from '../../Context/AuthContext';
 
@@ -29,6 +29,7 @@ const ButtonLogin = styled.button`
 
 const Cockpit = (props) => {
   const toogleBtnRef = useRef(null);
+  const authContext = useContext(AuthContext);
 
   useEffect(() => {
     toogleBtnRef.current.click();
@@ -43,14 +44,10 @@ const Cockpit = (props) => {
         onClick = { props.tooglePersonsTable }
       > Toogle Persons Table
       </ButtonToogleTable>
-      <AuthContext.Consumer>
-        {(context) => (
-          <ButtonLogin
-            onClick = { context.loginHandler }
-          > Login
-          </ButtonLogin>
-        )}
-      </AuthContext.Consumer>
+      <ButtonLogin
+        onClick = { authContext.loginHandler }
+      > Login
+      </ButtonLogin>
     </div>
   );
 };
