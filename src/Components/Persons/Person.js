@@ -17,6 +17,15 @@ const PPersonName = styled.p`
 `;
 
 class Person extends Component {
+  constructor(props) {
+    super(props)
+    this.inputElementRef = React.createRef();
+  }
+
+  componentDidMount() {
+    this.inputElementRef.current.focus();
+  }
+
   render() {
     console.log('Person rendering');
     return (
@@ -27,6 +36,7 @@ class Person extends Component {
       >I'm { this.props.name } and I'm { this.props.age } years old
       </PPersonName>
       <input type="text"
+        ref = { this.inputElementRef }
         value = { this.props.name }
         onChange = { this.props.change }
       ></input>
