@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
-
+import AuthContext from '../../Context/AuthContext';
 
 const DivPerson = styled.div`
   width: 60%;
@@ -13,28 +13,43 @@ const DivPerson = styled.div`
 
 const PPersonName = styled.p`
   color: ${ props => props.age > 18 ? 'red' : 'blue'};
-  fontWeight: ${ props => props.age > 18 ? 'bold' : 'normal'};
+  font-weight: ${ props => props.age > 18 ? 'bold' : 'normal'};
 `;
 
-const Person = (props) => {
-  const personNameStyleObj = {
-    color: `${props.age > 18 ? 'red' : 'blue'}`,
-    fontWeight: `${props.age > 18 ? 'bold' : 'normal'}`,
-  };
+class Person extends Component {
+  constructor(props) {
+    super(props)
+    this.inputElementRef = React.createRef();
+  }
 
-  return (
-    <DivPerson>
-      <PPersonName
-        style = {personNameStyleObj}
-        onClick = { props.click }
-      >I'm { props.name } and I'm { props.age } years old
-      </PPersonName>
-      <input type="text"
-        value = { props.name }
-        onChange = { props.change }
-      ></input>
-    </DivPerson>
-  )
+  componentDidMount() {
+    this.inputElementRef.current.focus();
+  }
+
+  render() {
+    console.log('Person rendering');
+    return (
+      <DivPerson>
+        <AuthContext.Consumer>
+          {(context) => (
+            context.isAuth
+              ? <h1>Please Success</h1>
+              : <h1>Please Login</h1>
+          )}
+        </AuthContext.Consumer>
+        <PPersonName
+          age = { this.props.age }
+          onClick = { this.props.click }
+        >I'm { this.props.name } and I'm { this.props.age } years old
+        </PPersonName>
+        <input type="text"
+          ref = { this.inputElementRef }
+          value = { this.props.name }
+          onChange = { this.props.change }
+        ></input>
+      </DivPerson>
+    );
+  };
 };
 
 export default Person;

@@ -6,6 +6,8 @@ import styled from 'styled-components';
 
 import Persons from '../Components/Persons';
 import Cockpit from '../Components/Cockpit';
+import WithClasses from '../HOC/WithClasses';
+import AuthContext from '../Context/AuthContext';
 
 const DivApp = styled.div`
   text-align: center;
@@ -48,12 +50,40 @@ const DivApp = styled.div`
 // }
 
 class App extends Component {
-  state = {
-    persons: [
-      { name: 'Kevin', age: 20 },
-      { name: 'OTree', age: 18 },
-    ],
-    showPersons: true,
+  constructor(props) {
+    super(props);
+    this.state = {
+      persons: [
+        { name: 'Kevin', age: 20 },
+        { name: 'OTree', age: 18 },
+      ],
+      showPersons: true,
+      isAuth: false,
+    };
+    console.log('App.js constructor');
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('App.js getDerivedStateFromProps', props);
+    return state;
+  };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('App.js shouldComponentUpdate');
+    console.log('App.js nextProps', nextProps);
+    console.log('App.js nextState', nextState);
+    return true;
+  };
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('App.js getSnapshotBeforeUpdate');
+    console.log('App.js prevProps', prevProps);
+    console.log('App.js prevState', prevState);
+    return null;
+  };
+
+  componentDidUpdate() {
+    console.log('App.js componentDidUpdate');
   };
 
   switchNameHandler = () => {
@@ -77,29 +107,46 @@ class App extends Component {
   };
 
   nameChangeHandler = (value, index) => {
-    const { persons } = this.state;
-    persons[index].name = value;
-    this.setState({ persons });
+    this.setState(( prevState ) => {
+      const { persons } = prevState;
+      persons[index].name = value;
+      return { persons };
+    });
+  };
+
+  loginHandler = () => {
+    this.setState({ isAuth: true });
   };
 
   render() {
+    console.log('App.js render');
     const personsTable = this.state.showPersons
       ? (<Persons
           persons = { this.state.persons }
           deletePersonHandler = { this.deletePersonHandler }
           nameChangeHandler = { this.nameChangeHandler }
+          isAuth = { this.state.isAuth }
         ></Persons>)
       : null;
 
     return (
       <DivApp>
-        <Cockpit
-          showPersons = { this.state.showPersons }
-          tooglePersonsTable = { this.tooglePersonsTable }
-        ></Cockpit>
-        { personsTable }
+        <AuthContext.Provider
+          value = {{
+            isAuth: this.state.isAuth,
+            loginHandler: this.loginHandler,
+          }}
+        >
+          <Cockpit
+            showPersons = { this.state.showPersons }
+            tooglePersonsTable = { this.tooglePersonsTable }
+            loginHandler = { this.loginHandler }
+          ></Cockpit>
+          { personsTable }
+        </AuthContext.Provider>
       </DivApp>
     )
   }
 }
-export default App;
+
+export default WithClasses(App, 'app');
