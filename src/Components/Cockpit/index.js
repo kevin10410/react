@@ -18,6 +18,14 @@ const ButtonToogleTable = styled.button`
   }
 `;
 
+const ButtonLogin = styled.button`
+  cursor: pointer;
+  border: 1px solid blue;
+  outline: none;
+  padding: 5px 10px;
+  background-color: #ffd004;
+`;
+
 const Cockpit = (props) => {
   const toogleBtnRef = useRef(null);
 
@@ -34,6 +42,10 @@ const Cockpit = (props) => {
         onClick = { props.tooglePersonsTable }
       > Toogle Persons Table
       </ButtonToogleTable>
+      <ButtonLogin
+        onClick = { props.loginHandler }
+      > Login
+      </ButtonLogin>
     </div>
   );
 };

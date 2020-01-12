@@ -57,6 +57,7 @@ class App extends Component {
         { name: 'OTree', age: 18 },
       ],
       showPersons: true,
+      isAuth: false,
     };
     console.log('App.js constructor');
   };
@@ -112,6 +113,10 @@ class App extends Component {
     });
   };
 
+  loginHandler = () => {
+    this.setState({ isAuth: true });
+  };
+
   render() {
     console.log('App.js render');
     const personsTable = this.state.showPersons
@@ -119,6 +124,7 @@ class App extends Component {
           persons = { this.state.persons }
           deletePersonHandler = { this.deletePersonHandler }
           nameChangeHandler = { this.nameChangeHandler }
+          isAuth = { this.state.isAuth }
         ></Persons>)
       : null;
 
@@ -127,6 +133,7 @@ class App extends Component {
         <Cockpit
           showPersons = { this.state.showPersons }
           tooglePersonsTable = { this.tooglePersonsTable }
+          loginHandler = { this.loginHandler }
         ></Cockpit>
         { personsTable }
       </DivApp>

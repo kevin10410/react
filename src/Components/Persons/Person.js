@@ -30,17 +30,21 @@ class Person extends Component {
     console.log('Person rendering');
     return (
       <DivPerson>
-      <PPersonName
-        age = { this.props.age }
-        onClick = { this.props.click }
-      >I'm { this.props.name } and I'm { this.props.age } years old
-      </PPersonName>
-      <input type="text"
-        ref = { this.inputElementRef }
-        value = { this.props.name }
-        onChange = { this.props.change }
-      ></input>
-    </DivPerson>
+        { this.props.isAuth
+          ? (<h1>Please Success</h1>)
+          : (<h1>Please Login</h1>)
+        }
+        <PPersonName
+          age = { this.props.age }
+          onClick = { this.props.click }
+        >I'm { this.props.name } and I'm { this.props.age } years old
+        </PPersonName>
+        <input type="text"
+          ref = { this.inputElementRef }
+          value = { this.props.name }
+          onChange = { this.props.change }
+        ></input>
+      </DivPerson>
     );
   };
 };

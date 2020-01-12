@@ -36,6 +36,7 @@ class Persons extends Component {
             key = { index }
             click = { () => this.props.deletePersonHandler(index)}
             change = { (event) => this.props.nameChangeHandler(event.target.value, index)}
+            isAuth = { this.props.isAuth }
           ></Person>
         );
       });
