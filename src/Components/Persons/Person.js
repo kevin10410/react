@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
+import AuthContext from '../../Context/AuthContext';
 
 const DivPerson = styled.div`
   width: 60%;
@@ -30,10 +30,13 @@ class Person extends Component {
     console.log('Person rendering');
     return (
       <DivPerson>
-        { this.props.isAuth
-          ? (<h1>Please Success</h1>)
-          : (<h1>Please Login</h1>)
-        }
+        <AuthContext.Consumer>
+          {(context) => (
+            context.isAuth
+              ? <h1>Please Success</h1>
+              : <h1>Please Login</h1>
+          )}
+        </AuthContext.Consumer>
         <PPersonName
           age = { this.props.age }
           onClick = { this.props.click }

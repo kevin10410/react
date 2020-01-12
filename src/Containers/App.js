@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import Persons from '../Components/Persons';
 import Cockpit from '../Components/Cockpit';
 import WithClasses from '../HOC/WithClasses';
+import AuthContext from '../Context/AuthContext';
 
 const DivApp = styled.div`
   text-align: center;
@@ -130,12 +131,19 @@ class App extends Component {
 
     return (
       <DivApp>
-        <Cockpit
-          showPersons = { this.state.showPersons }
-          tooglePersonsTable = { this.tooglePersonsTable }
-          loginHandler = { this.loginHandler }
-        ></Cockpit>
-        { personsTable }
+        <AuthContext.Provider
+          value = {{
+            isAuth: this.state.isAuth,
+            loginHandler: this.loginHandler,
+          }}
+        >
+          <Cockpit
+            showPersons = { this.state.showPersons }
+            tooglePersonsTable = { this.tooglePersonsTable }
+            loginHandler = { this.loginHandler }
+          ></Cockpit>
+          { personsTable }
+        </AuthContext.Provider>
       </DivApp>
     )
   }
